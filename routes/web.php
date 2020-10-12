@@ -16,3 +16,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/review/create', [App\Http\Controllers\CreateReviewController::class, "create"])
+	->name("create_review");
+Route::post('/review/create', [App\Http\Controllers\CreateReviewController::class, "store"])
+    ->name("store_review");
+    
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
